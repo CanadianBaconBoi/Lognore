@@ -10,15 +10,16 @@ public class JavaFilter implements Filter {
 
 	@Override
 	public boolean isLoggable(LogRecord event) {
-
-        for (String s : Config.loggerFilters) {
-            if (event.getLoggerName().equals(s)) {
-                return false;
+        if (event.getLevel().intValue() <= Config.javaLevel.intValue()) {
+            for (String s : Config.loggerFilters) {
+                if (event.getLoggerName().equals(s)) {
+                    return false;
+                }
             }
-        }
-        for (String s : Config.messageFilters) {
-            if (event.getMessage().contains(s)) {
-                return false;
+            for (String s : Config.messageFilters) {
+                if (event.getMessage().contains(s)) {
+                    return false;
+                }
             }
         }
 		return true;

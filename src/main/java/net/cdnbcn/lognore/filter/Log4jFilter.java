@@ -12,15 +12,17 @@ import org.apache.logging.log4j.message.Message;
 public class Log4jFilter implements Filter {
     @Override
     public Filter.Result filter(LogEvent event) {
-        for (String s : Config.loggerFilters) {
-            if (event.getLoggerName().equals(s)) {
-                return Filter.Result.DENY;
+        if (event.getLevel().intLevel() >= Config.log4jLevel.intLevel()) {
+            for (String s : Config.loggerFilters) {
+                if (event.getLoggerName().equals(s)) {
+                    return Filter.Result.DENY;
+                }
             }
-        }
-        for (String s : Config.messageFilters) {
-            Message m = event.getMessage();
-            if (m.toString().contains(s) || m.getFormattedMessage().contains(s)) {
-                return Filter.Result.DENY;
+            for (String s : Config.messageFilters) {
+                Message m = event.getMessage();
+                if (m.toString().contains(s) || m.getFormattedMessage().contains(s)) {
+                    return Filter.Result.DENY;
+                }
             }
         }
         return null;

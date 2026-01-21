@@ -3,6 +3,8 @@ package net.cdnbcn.lognore;
 import net.cdnbcn.lognore.filter.JavaFilter;
 import net.cdnbcn.lognore.filter.Log4jFilter;
 import net.cdnbcn.lognore.filter.SystemFilter;
+import org.apache.commons.logging.Log;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,6 +29,7 @@ public class LognoreMod {
         for (String loggerName : Config.loggerFilters) {
             LOG.info(loggerName);
         }
+
         JavaFilter.applyFilter();
         Log4jFilter.applyFilter();
         SystemFilter.applyFilter();
