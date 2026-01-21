@@ -1,7 +1,6 @@
 package net.cdnbcn.lognore;
 
 import java.io.File;
-import java.util.logging.Filter;
 
 import net.cdnbcn.lognore.filter.FilterLevel;
 import net.minecraftforge.common.config.Configuration;
