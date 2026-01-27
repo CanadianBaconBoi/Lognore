@@ -6,6 +6,7 @@ import net.cdnbcn.lognore.filter.FilterLevel;
 import net.minecraftforge.common.config.Configuration;
 
 public class Config {
+
     public static String maxFilteredLevel = "WARN";
     public static String[] messageFilters = {};
     public static String[] loggerFilters = {};
@@ -17,9 +18,18 @@ public class Config {
     public static void synchronizeConfiguration(File configFile) {
         Configuration configuration = new Configuration(configFile);
 
-        maxFilteredLevel = configuration.getString("maxFilteredLevel", Configuration.CATEGORY_GENERAL, maxFilteredLevel, "Max filtered log level, valid values are ERROR, WARN, INFO, DEBUG. For example, setting to WARN, would filter WARN, INFO, and DEBUG.");
-        messageFilters = configuration.getStringList("messageFilters", Configuration.CATEGORY_GENERAL, messageFilters, "Messages to filter (substring)");
-        loggerFilters = configuration.getStringList("loggerFilters", Configuration.CATEGORY_GENERAL, loggerFilters, "Log4j loggers to filter");
+        maxFilteredLevel = configuration.getString(
+            "maxFilteredLevel",
+            Configuration.CATEGORY_GENERAL,
+            maxFilteredLevel,
+            "Max filtered log level, valid values are ERROR, WARN, INFO, DEBUG. For example, setting to WARN, would filter WARN, INFO, and DEBUG.");
+        messageFilters = configuration.getStringList(
+            "messageFilters",
+            Configuration.CATEGORY_GENERAL,
+            messageFilters,
+            "Messages to filter (substring)");
+        loggerFilters = configuration
+            .getStringList("loggerFilters", Configuration.CATEGORY_GENERAL, loggerFilters, "Log4j loggers to filter");
 
         filterLevel = getValueForLabel(maxFilteredLevel);
         log4jLevel = getLog4jLevelForFilterLevel(filterLevel);

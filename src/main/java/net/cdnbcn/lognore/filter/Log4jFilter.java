@@ -1,6 +1,7 @@
 package net.cdnbcn.lognore.filter;
 
 import net.cdnbcn.lognore.Config;
+
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Marker;
@@ -10,17 +11,23 @@ import org.apache.logging.log4j.core.Logger;
 import org.apache.logging.log4j.message.Message;
 
 public class Log4jFilter implements Filter {
+
     @Override
     public Filter.Result filter(LogEvent event) {
-        if (event.getLevel().intLevel() >= Config.log4jLevel.intLevel()) {
+        if (event.getLevel()
+            .intLevel() >= Config.log4jLevel.intLevel()) {
             for (String s : Config.loggerFilters) {
-                if (event.getLoggerName().equals(s)) {
+                if (event.getLoggerName()
+                    .equals(s)) {
                     return Filter.Result.DENY;
                 }
             }
             for (String s : Config.messageFilters) {
                 Message m = event.getMessage();
-                if (m.toString().contains(s) || m.getFormattedMessage().contains(s)) {
+                if (m.toString()
+                    .contains(s)
+                    || m.getFormattedMessage()
+                        .contains(s)) {
                     return Filter.Result.DENY;
                 }
             }
