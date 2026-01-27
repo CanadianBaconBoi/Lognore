@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = net.cdnbcn.lognore.LognoreMod.MODID, version = Tags.VERSION, name = "Lognore", acceptedMinecraftVersions = "[1.7.10]")
+@Mod(modid = net.cdnbcn.lognore.LognoreMod.MODID, version = Tags.VERSION, name = "Lognore", acceptedMinecraftVersions = "[1.7.10]", acceptableRemoteVersions = "*")
 public class LognoreMod {
 
     public static final String MODID = "lognore";
